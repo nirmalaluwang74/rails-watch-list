@@ -1,0 +1,11 @@
+<div class="container">
+  <h1><%= @list.name %></h1>
+</div>
+
+<% @list.movie.each do |movie|%>
+  <%= movie.name %>
+  <%# <%= image_tag plant.image_url, width: '100px' %> %>
+  <%= link_to 'Create list', edit_restaurant_path(@restaurant) %> |
+  <%= link_to 'Back', restaurants_path %>
+  <%# <i class="fas fa-trash-alt"></i> %>
+ <% end %>

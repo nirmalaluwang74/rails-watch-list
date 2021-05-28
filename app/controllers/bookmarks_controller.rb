@@ -9,20 +9,21 @@ class BookmarksController < ApplicationController
   end
 
   def create
-    @bookmark = Bookmark.new(bookmark_params)
-    @list = List.find(params[:list_id])
-    @bookmark.list = @list
-      if @bookmark.save
-        redirect_to @bookmark, notice: 'Movie was bookmarked.'
-      else
-      render :new
+    @movie = Movie.find(params[:movie_id])
+    @bookmarks = Bookmark.where(id: params[:movie_bookmark][:bookmark])
+
+    @bookmarks.each do |bookmark|
+      @movie_bookmark = MovieTag.create(movie: @movie, bookmark: bookmark)
+    end
+
+    redirect_to @list.movie, notice: 'Bookmark was created'
     end
   end
 
   def destroy
     @bookmark = Bookmark.find(params[:id])
     @bookmark.destroy
-    redirect_to bookmark_url, notice: 'Garden was successfully destroyed.'
+    redirect_to @list, notice: 'Bookmark was deleted.'
   end
 
   private
@@ -30,3 +31,4 @@ class BookmarksController < ApplicationController
       params.require(:bookmark).permit(:comment, :movie_id)
     end
 end
+
