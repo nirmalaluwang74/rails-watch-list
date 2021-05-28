@@ -1,18 +1,18 @@
-<h1>Add bookmark to movie list</h1>
-
-<%= simple_form_for [ @bookmark, @movie, @list ] do |f| %>
+<%= simple_form_for([@list, @bookmark]) do |f| %>
   
   <div class="form-inputs">
-    <%= f.input :movie_list %>
+    <%= f.input :comment %>
   </div>
 
   <div class="form-inputs">
-    <%= f.input :movie_list %>
+  <%= f.association :movie %>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
 <% end %>
+
+<p><%= link_to 'Back to movie lists', root_path %></p>
 
 

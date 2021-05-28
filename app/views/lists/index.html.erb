@@ -1,7 +1,12 @@
+
+<%= image_tag 'image_1.jpg' %>
+
 <h1> Movie lists! </h1>
 
-<p>
-    <% @lists.each do |list| %>   
-    <%= list.name %>
-    <% end %> 
-</p>
+
+<% @lists.each do |list| %>   
+  <p><%=link_to list.name, list_path(list.id), class: "btn btn-primary" %></p>
+  <%# #prefix_path %>
+<% end %> 
+<p><%= link_to 'New list', new_list_path, class: "btn btn-ghost"%></p>
+<%# <p><%= link_to 'Create a Bookmark', new_list_bookmark_path[:list_id] %></p> 
